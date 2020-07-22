@@ -20,7 +20,6 @@ const generators = [];
 const manifest = require('live2d-widget/lib/manifest');
 const mainfestPath = require.resolve('live2d-widget/lib/manifest');
 const coreScriptName = manifest['main.js'];
-const localWidgetVer = require(path.resolve(require.resolve('live2d-widget'), '../../', 'package')).version;
 
 const blogRoot = hexo.config.root || '/';
 
