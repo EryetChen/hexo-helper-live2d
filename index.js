@@ -20,8 +20,6 @@ const generators = [];
 const manifest = require('live2d-widget/lib/manifest');
 const mainfestPath = require.resolve('live2d-widget/lib/manifest');
 const coreScriptName = manifest['main.js'];
-const thisPkgInfo = require('./package');
-const widgetVer = thisPkgInfo.dependencies['live2d-widget'];
 const localWidgetVer = require(path.resolve(require.resolve('live2d-widget'), '../../', 'package')).version;
 
 const blogRoot = hexo.config.root || '/';
@@ -49,7 +47,7 @@ function getScriptURL (scriptFrom) { // eslint-disable-line max-lines-per-functi
 
   if (config.log) {
 
-    print.log(`hexo-helper-live2d@${thisPkgInfo.version}, using live2d-widget@${widgetVer}.`);
+    print.log(`hexo-helper-live2d@https://github.com/EryetChen/hexo-helper-live2d/tarball/master, using live2d-widget@https://github.com/EryetChen/live2d-widget.js/tarball/master.`);
 
   }
 
@@ -63,7 +61,7 @@ function getScriptURL (scriptFrom) { // eslint-disable-line max-lines-per-functi
      */
     if (config.log) {
 
-      print.log(`use local live2d-widget@${localWidgetVer}`);
+      print.log(`use local live2d-widget@https://github.com/EryetChen/live2d-widget.js/tarball/master`);
 
     }
     const scriptGenerators = buildGeneratorsFromManifest(manifest, path.dirname(mainfestPath), `${config.pluginRootPath}${config.pluginJsPath}`);
@@ -72,20 +70,6 @@ function getScriptURL (scriptFrom) { // eslint-disable-line max-lines-per-functi
     return `${blogRoot}${url.resolve(`${config.pluginRootPath}${config.pluginJsPath}`, coreScriptName)}?${useHash}`;
 
   }
-  case 'jsdelivr':
-
-    /*
-     * Is jsdelivr online CDN(2)
-     * Use jsdelivr
-     */
-    return `https://cdn.jsdelivr.net/npm/live2d-widget@${widgetVer}/lib/${coreScriptName}`;
-  case 'unpkg':
-
-    /*
-     * Is unpkg online CDN(3)
-     * Use unpkg
-     */
-    return `https://unpkg.com/live2d-widget@${widgetVer}/lib/${coreScriptName}`;
   default:
 
     /*
